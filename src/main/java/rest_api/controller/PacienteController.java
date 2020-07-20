@@ -84,7 +84,7 @@ public class PacienteController{
           service.deletePaciente(id);
           return new ResponseEntity<>(
           "Se borro con exito",
-          HttpStatus.BAD_REQUEST);
+          HttpStatus.OK);
       }catch(Exception e) {
           return new ResponseEntity<>(
           "Ocurrio un error",
