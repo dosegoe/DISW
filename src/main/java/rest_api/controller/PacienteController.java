@@ -60,7 +60,7 @@ public class PacienteController{
   }
   // update 1 paciente, sobre su id
   @PutMapping("/{id}")
-  public Paciente updatePaciente(@PathVariable Long id, @RequestBody Paciente paciente)
+  public Paciente updatePaciente(@PathVariable Long id, @RequestBody MPaciente paciente)
   {
       MPaciente pac = service.listOne(id);
       Paciente newpac = service.convert(pac);
@@ -68,14 +68,14 @@ public class PacienteController{
       return service.saveOrUpdatePaciente(newpac);
   }
   //update estado de paciente
-  @PutMapping("/filter")
-  public Paciente updatePaciente(@RequestParam(value="id") Long id, @RequestParam(value="estado") Long estado, @RequestBody MPaciente paciente)
-  {
-      MPaciente pac = service.listOne(id);
-      Paciente newpac = service.convert(pac);
-      newpac.setEstado(estado);
-      return service.saveOrUpdatePaciente(newpac);
-  }
+//   @PutMapping("/filter")
+//   public Paciente updatePaciente(@RequestParam(value="id") Long id, @RequestParam(value="estado") Long estado, @RequestBody MPaciente paciente)
+//   {
+//       MPaciente pac = service.listOne(id);
+//       Paciente newpac = service.convert(pac);
+//       newpac.setEstado(estado);
+//       return service.saveOrUpdatePaciente(newpac);
+//   }
   // delete 1 medico, sobre su id
   @DeleteMapping("/{id}")
   public ResponseEntity<String> deletePaciente(@PathVariable Long id)
