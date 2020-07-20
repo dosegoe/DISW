@@ -62,8 +62,8 @@ public class PacienteController{
   @PutMapping("/{id}")
   public Paciente updatePaciente(@PathVariable Long id, @RequestBody MPaciente paciente)
   {
-      MPaciente pac = service.listOne(id);
-      Paciente newpac = service.convert(pac);
+      //MPaciente pac = service.listOne(id);
+      Paciente newpac = service.convert(paciente);
       newpac.setId(id);
       return service.saveOrUpdatePaciente(newpac);
   }
