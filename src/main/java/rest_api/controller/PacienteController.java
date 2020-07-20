@@ -23,7 +23,7 @@ import java.util.List;
 //esto mapea la app en requests URL->HTTP
 @RestController
 //localhost:puerto/api/medicos
-@RequestMapping("/api/pacientes")
+@RequestMapping("/pacientes")
 public class PacienteController{
 
   @Autowired
@@ -62,20 +62,11 @@ public class PacienteController{
   @PutMapping("/{id}")
   public Paciente updatePaciente(@PathVariable Long id, @RequestBody MPaciente paciente)
   {
-      //MPaciente pac = service.listOne(id);
       Paciente newpac = service.convert(paciente);
       newpac.setId(id);
       return service.saveOrUpdatePaciente(newpac);
   }
-  //update estado de paciente
-//   @PutMapping("/filter")
-//   public Paciente updatePaciente(@RequestParam(value="id") Long id, @RequestParam(value="estado") Long estado, @RequestBody MPaciente paciente)
-//   {
-//       MPaciente pac = service.listOne(id);
-//       Paciente newpac = service.convert(pac);
-//       newpac.setEstado(estado);
-//       return service.saveOrUpdatePaciente(newpac);
-//   }
+  
   // delete 1 medico, sobre su id
   @DeleteMapping("/{id}")
   public ResponseEntity<String> deletePaciente(@PathVariable Long id)
