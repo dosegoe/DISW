@@ -62,14 +62,10 @@ public class PacienteController{
   @PutMapping("/{id}")
   public Paciente updatePaciente(@PathVariable Long id, @RequestBody Paciente paciente)
   {
-      //System.out.println(paciente.getId());
-      //Paciente pacient = service.saveOrUpdatePaciente(paciente);
-      return service.saveOrUpdatePaciente(paciente);
-      //return new ResponseEntity<Paciente>(pacient, HttpStatus.CREATED);
-      //MPaciente pac = service.listOne(id);
-      //Paciente newpac = service.convert(pac);
-      //newpac.setId(id);
-      //return service.saveOrUpdatePaciente(newpac);
+      MPaciente pac = service.listOne(id);
+      Paciente newpac = service.convert(pac);
+      newpac.setId(id);
+      return service.saveOrUpdatePaciente(newpac);
   }
   //update estado de paciente
   @PutMapping("/filter")
