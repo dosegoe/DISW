@@ -54,7 +54,7 @@ public class PacienteController{
       return service.listOne(id);
   }
   // get pacientes que tengan el estado definido, este es un parametro de la request
-  @GetMapping("")
+  @GetMapping("/filter")
   public List<MPaciente> getPacientesByEstado(@RequestParam(value="estado") Long estado)
   {
       return service.listByEstado(estado);
