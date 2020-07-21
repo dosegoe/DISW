@@ -65,11 +65,10 @@ public class PacienteController{
   // get pacientes que tengan el estado definido, este es un parametro de la request
   
   @GetMapping("/filter")
-  public ResponseEntity<MPaciente> getPacientesByEstado(@RequestParam(value="estado") Long estado)
+  public ResponseEntity<List<MPaciente>> getPacientesByEstado(@RequestParam(value="estado") Long estado)
   {
       try {
-          service.listByEstado(estado);
-          return new ResponseEntity<>(HttpStatus.OK);
+          return new ResponseEntity<>(service.listByEstado(estado), HttpStatus.OK);
       } catch (Exception e) {
           return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
       }
