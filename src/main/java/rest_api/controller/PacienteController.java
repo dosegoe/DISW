@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import javax.validation.Valid;
@@ -102,4 +103,17 @@ public class PacienteController{
           HttpStatus.BAD_REQUEST);
       }
   }
+
+  @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public void handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
+        String name = ex.getName();
+        String type = ex.getRequiredType().getSimpleName();
+        Object value = ex.getValue();
+        String message = String.format("'%s' should be a valid '%s' and '%s' isn't", 
+                                    name, type, value);
+
+        System.out.println(message);
+        // Do the graceful handling
+    }
+
 }
