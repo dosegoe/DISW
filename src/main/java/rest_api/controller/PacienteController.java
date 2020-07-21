@@ -51,7 +51,14 @@ public class PacienteController{
   @GetMapping("/{id}")
   public MPaciente getPacienteById(@PathVariable("id") Long id)
   {
-      return service.listOne(id);
+    try{
+        return service.listOne(id);
+    }catch(Exception e) {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    
+      //return service.listOne(id);
   }
   // get pacientes que tengan el estado definido, este es un parametro de la request
   @GetMapping("/filter")
