@@ -40,12 +40,8 @@ public class PacienteController{
           return new ResponseEntity<Paciente>(pacient, HttpStatus.CREATED);
 
       }catch(Exception e){
-          return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+          return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // Creo que otro mensaje tiene la prioridad cuando el estado es un string por ejemplo, pero igual retorna HTTP 400 Bad Request entonces está bien
       }
-    
-    //   System.out.println(paciente.getId());
-    //   Paciente pacient = service.saveOrUpdatePaciente(paciente);
-    //   return new ResponseEntity<Paciente>(pacient, HttpStatus.CREATED);
   }
   // Se obtienen todos los pacientes
   //Get localhost:puerto/api/medicos
@@ -69,10 +65,20 @@ public class PacienteController{
   // get pacientes que tengan el estado definido, este es un parametro de la request
   
   @GetMapping("/filter")
-  public List<MPaciente> getPacientesByEstado(@RequestParam(value="estado") Long estado)
+  public ResponseEntity<MPaciente> getPacientesByEstado(@RequestParam(value="estado") Long estado)
   {
-      return service.listByEstado(estado);
+      try {
+          service.listByEstado(estado);
+          return new ResponseEntity<>(HttpStatus.OK);
+      } catch (Exception e) {
+          return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+      }
   }
+//   @GetMapping("/filter")
+//   public List<MPaciente> getPacientesByEstado(@RequestParam(value="estado") Long estado)
+//   {
+//       return service.listByEstado(estado);
+//   }
   // update 1 paciente, sobre su id
   @PutMapping("/{id}")
   public Paciente updatePaciente(@PathVariable Long id, @RequestBody MPaciente paciente)
