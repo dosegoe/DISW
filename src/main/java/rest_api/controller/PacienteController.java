@@ -49,13 +49,13 @@ public class PacienteController{
   // get 1 paciente by id, el parametro esta en la URL
   //GET localhost:puerto/api/medicos/id
     @GetMapping("/{id}")
-    public ResponseEntity<String> getPacienteById(@PathVariable("id") Long id)
+    public ResponseEntity<MPaciente> getPacienteById(@PathVariable("id") Long id)
     {
         try{
             service.listOne(id);
-            return new ResponseEntity<>("hola", HttpStatus.OK);
+            return new ResponseEntity<MPaciente>(service.listOne(id), HttpStatus.OK);
             }catch(Exception e){
-                return new ResponseEntity<>("holamal", HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
     }
 //   @GetMapping("/{id}")
