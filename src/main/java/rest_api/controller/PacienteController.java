@@ -34,10 +34,18 @@ public class PacienteController{
   @PostMapping("")
   public ResponseEntity<Paciente> addPaciente (@RequestBody Paciente paciente)
   {
+      try{
+          System.out.println(paciente.getId());
+          Paciente pacient = service.saveOrUpdatePaciente(paciente);
+          return new ResponseEntity<Paciente>(pacient, HttpStatus.CREATED);
 
-      System.out.println(paciente.getId());
-      Paciente pacient = service.saveOrUpdatePaciente(paciente);
-      return new ResponseEntity<Paciente>(pacient, HttpStatus.CREATED);
+      }catch(Exception e){
+          return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+      }
+    
+    //   System.out.println(paciente.getId());
+    //   Paciente pacient = service.saveOrUpdatePaciente(paciente);
+    //   return new ResponseEntity<Paciente>(pacient, HttpStatus.CREATED);
   }
   // Se obtienen todos los pacientes
   //Get localhost:puerto/api/medicos
@@ -58,18 +66,6 @@ public class PacienteController{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
     }
-//   @GetMapping("/{id}")
-//   public MPaciente getPacienteById(@PathVariable("id") Long id)
-//   {
-//     try{
-//         return service.listOne(id);
-//     }catch(Exception e) {
-//         return new ResponseEntity<MPaciente>.notFound().build();
-//     }
-
-    
-//       //return service.listOne(id);
-//   }
   // get pacientes que tengan el estado definido, este es un parametro de la request
   
   @GetMapping("/filter")
