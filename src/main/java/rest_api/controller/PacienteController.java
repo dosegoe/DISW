@@ -48,19 +48,30 @@ public class PacienteController{
   }
   // get 1 paciente by id, el parametro esta en la URL
   //GET localhost:puerto/api/medicos/id
-  @GetMapping("/{id}")
-  public MPaciente getPacienteById(@PathVariable("id") Long id)
-  {
-    try{
-        return service.listOne(id);
-    }catch(Exception e) {
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping("/{id}")
+    public ResponseEntity<String> getPacienteById(@PathVariable("id") Long id)
+    {
+        try{
+            service.listOne(id);
+            return new ResponseEntity<>("hola", HttpStatus.OK);
+            }catch(Exception e){
+                return new ResponseEntity<>("holamal", HttpStatus.NOT_FOUND);
+            }
     }
+//   @GetMapping("/{id}")
+//   public MPaciente getPacienteById(@PathVariable("id") Long id)
+//   {
+//     try{
+//         return service.listOne(id);
+//     }catch(Exception e) {
+//         return new ResponseEntity<MPaciente>.notFound().build();
+//     }
 
     
-      //return service.listOne(id);
-  }
+//       //return service.listOne(id);
+//   }
   // get pacientes que tengan el estado definido, este es un parametro de la request
+  
   @GetMapping("/filter")
   public List<MPaciente> getPacientesByEstado(@RequestParam(value="estado") Long estado)
   {
