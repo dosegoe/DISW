@@ -81,13 +81,22 @@ public class PacienteController{
 //       return service.listByEstado(estado);
 //   }
   // update 1 paciente, sobre su id
-  @PutMapping("/{id}")
-  public Paciente updatePaciente(@PathVariable Long id, @RequestBody MPaciente paciente)
-  {
-      Paciente newpac = service.convert(paciente);
-      newpac.setId(id);
-      return service.saveOrUpdatePaciente(newpac);
-  }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Paciente> updatePaciente(@PathVariable Long id, @RequestBody MPaciente paciente)
+    {
+        Paciente newpac = service.convert(paciente);
+        newpac.setId(id);
+        Paciente pacient = service.saveOrUpdatePaciente(newpac);
+        return new ResponseEntity<Paciente>(pacient, HttpStatus.CREATED);
+    }
+  //@PutMapping("/{id}")
+  //public Paciente updatePaciente(@PathVariable Long id, @RequestBody MPaciente paciente)
+  //{
+  //    Paciente newpac = service.convert(paciente);
+  //    newpac.setId(id);
+  //    return service.saveOrUpdatePaciente(newpac);
+  //}
   
   // delete 1 medico, sobre su id
   @DeleteMapping("/{id}")
