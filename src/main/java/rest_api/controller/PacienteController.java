@@ -87,6 +87,7 @@ public class PacienteController{
     {
         Paciente newpac = service.convert(paciente);
         newpac.setId(id);
+        System.out.println(id);
         Paciente pacient = service.saveOrUpdatePaciente(newpac);
         return new ResponseEntity<Paciente>(pacient, HttpStatus.CREATED);
     }
