@@ -22,7 +22,7 @@ import rest_api.service.PacienteService;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 //esto mapea la app en requests URL->HTTP
 @RestController
 //localhost:puerto/api/medicos
