@@ -16,12 +16,12 @@ public class Paciente implements Serializable {
 
   public Paciente(){
   }
-  public Paciente(Long id, Long idmedico, Long estado, Long idPabellon, Long idCamaPabellon){
+  public Paciente(Long id, Long idmedico, Long estado){
     this.id = id;
     this.idmedico = idmedico;
     this.estado = estado;
-    this.idPabellon = idPabellon;
-    this.idCamaPabellon = idCamaPabellon;
+    // this.idPabellon = idPabellon;
+    // this.idCamaPabellon = idCamaPabellon;
   }
 
   @Id
@@ -31,10 +31,10 @@ public class Paciente implements Serializable {
   private Long idmedico;
   @Column(name="Estado")
   private Long estado;
-  @Column(name="idPabellon")
-  private Long idPabellon;
-  @Column(name="idCamaPabellon")
-  private Long idCamaPabellon;
+//   @Column(name="idPabellon")
+//   private Long idPabellon;
+//   @Column(name="idCamaPabellon")
+//   private Long idCamaPabellon;
 
   //GETTERS Y SETTERS
 
@@ -53,15 +53,15 @@ public class Paciente implements Serializable {
       return estado;
   }
 
-  public Long getIdPabellon()
-  {
-      return idPabellon;
-  }
+//   public Long getIdPabellon()
+//   {
+//       return idPabellon;
+//   }
 
-  public Long getIdCamaPabellon()
-  {
-      return idCamaPabellon;
-  }
+//   public Long getIdCamaPabellon()
+//   {
+//       return idCamaPabellon;
+//   }
 
   public void setId(Long id)
   {
@@ -78,13 +78,13 @@ public class Paciente implements Serializable {
       this.estado = estado;
   }
 
-  public void setIdPabellon(Long idPabellon)
-  {
-      this.idPabellon = idPabellon;
-  }
+//   public void setIdPabellon(Long idPabellon)
+//   {
+//       this.idPabellon = idPabellon;
+//   }
 
-  public void setIdCamaPabellon(Long idCamaPabellon)
-  {
-      this.idCamaPabellon = idCamaPabellon;
-  }
+//   public void setIdCamaPabellon(Long idCamaPabellon)
+//   {
+//       this.idCamaPabellon = idCamaPabellon;
+//   }
 }

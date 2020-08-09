@@ -73,15 +73,15 @@ public class PacienteController{
         }
     }
     
-    @GetMapping("/pabellon")
-    public ResponseEntity<List<MPaciente>> getPacientesByPabellon(@RequestParam(value="idPabellon") Long idPabellon)
-    {
-        try {
-            return new ResponseEntity<>(service.listByPabellon(idPabellon), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
+    // @GetMapping("/pabellon")
+    // public ResponseEntity<List<MPaciente>> getPacientesByPabellon(@RequestParam(value="idPabellon") Long idPabellon)
+    // {
+    //     try {
+    //         return new ResponseEntity<>(service.listByPabellon(idPabellon), HttpStatus.OK);
+    //     } catch (Exception e) {
+    //         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    //     }
+    // }
 
     @PutMapping("/{id}")
     public ResponseEntity<Paciente> updatePaciente(@PathVariable Long id, @RequestBody MPaciente paciente)

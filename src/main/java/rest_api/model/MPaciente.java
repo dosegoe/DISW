@@ -14,23 +14,23 @@ public class MPaciente implements Serializable{
     this.id = paciente.getId();
     this.idmedico = paciente.getIdmedico();
     this.estado = paciente.getEstado();
-    this.idPabellon = paciente.getIdPabellon();
-    this.idCamaPabellon = paciente.getIdCamaPabellon();
+    // this.idPabellon = paciente.getIdPabellon();
+    // this.idCamaPabellon = paciente.getIdCamaPabellon();
   }
 
-  public MPaciente(Long id, Long idmedico, Long estado, Long idPabellon, Long idCamaPabellon){
+  public MPaciente(Long id, Long idmedico, Long estado){
     this.id = id;
     this.idmedico = idmedico;
     this.estado = estado;
-    this.idPabellon = idPabellon;
-    this.idCamaPabellon = idCamaPabellon;
+    // this.idPabellon = idPabellon;
+    // this.idCamaPabellon = idCamaPabellon;
   }
 
   private Long id;
   private Long idmedico;
   private Long estado;
-  private Long idPabellon;
-  private Long idCamaPabellon;
+  // private Long idPabellon;
+  // private Long idCamaPabellon;
 
   public Long getId()
   {
@@ -47,15 +47,15 @@ public class MPaciente implements Serializable{
       return estado;
   }
 
-  public Long getIdPabellon()
-  {
-      return idPabellon;
-  }
+  // public Long getIdPabellon()
+  // {
+  //     return idPabellon;
+  // }
 
-  public Long getIdCamaPabellon()
-  {
-      return idCamaPabellon;
-  }
+  // public Long getIdCamaPabellon()
+  // {
+  //     return idCamaPabellon;
+  // }
 
   public void setId(Long id)
   {
@@ -72,13 +72,13 @@ public class MPaciente implements Serializable{
       this.estado = estado;
   }
 
-  public void setIdPabellon(Long idPabellon)
-  {
-      this.idPabellon = idPabellon;
-  }
-
-  public void setIdCamaPabellon(Long idCamaPabellon)
-  {
-      this.idCamaPabellon = idCamaPabellon;
-  }
+  //public void setIdPabellon(Long idPabellon)
+  //{
+  //    this.idPabellon = idPabellon;
+  //}
+//
+  //public void setIdCamaPabellon(Long idCamaPabellon)
+  //{
+  //    this.idCamaPabellon = idCamaPabellon;
+  //}
 }
