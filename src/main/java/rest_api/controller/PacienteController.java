@@ -45,15 +45,13 @@ public class PacienteController{
           return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // Creo que otro mensaje tiene la prioridad cuando el estado es un string por ejemplo, pero igual retorna HTTP 400 Bad Request entonces está bien
       }
   }
-  // Se obtienen todos los pacientes
-  //Get localhost:puerto/api/medicos
-  @GetMapping("")
-  public List<MPaciente> getPacientes()
-  {
-      return service.listAll();
-  }
-  // get 1 paciente by id, el parametro esta en la URL
-  //GET localhost:puerto/api/medicos/id
+  
+    @GetMapping("")
+    public List<MPaciente> getPacientes()
+    {
+        return service.listAll();
+    }
+  
     @GetMapping("/{id}")
     public ResponseEntity<MPaciente> getPacienteById(@PathVariable("id") Long id)
     {
@@ -64,23 +62,26 @@ public class PacienteController{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
     }
-  // get pacientes que tengan el estado definido, este es un parametro de la request
-  
-  @GetMapping("/filter")
-  public ResponseEntity<List<MPaciente>> getPacientesByEstado(@RequestParam(value="estado") Long estado)
-  {
-      try {
-          return new ResponseEntity<>(service.listByEstado(estado), HttpStatus.OK);
-      } catch (Exception e) {
-          return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-      }
-  }
-//   @GetMapping("/filter")
-//   public List<MPaciente> getPacientesByEstado(@RequestParam(value="estado") Long estado)
-//   {
-//       return service.listByEstado(estado);
-//   }
-  // update 1 paciente, sobre su id
+
+    @GetMapping("/filter")
+    public ResponseEntity<List<MPaciente>> getPacientesByEstado(@RequestParam(value="estado") Long estado)
+    {
+        try {
+            return new ResponseEntity<>(service.listByEstado(estado), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+    
+    @GetMapping("/pabellon")
+    public ResponseEntity<List<MPaciente>> getPacientesByPabellon(@RequestParam(value="idPabellon") Long idPabellon)
+    {
+        try {
+            return new ResponseEntity<>(service.listByPabellon(idPabellon), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Paciente> updatePaciente(@PathVariable Long id, @RequestBody MPaciente paciente)
@@ -91,29 +92,21 @@ public class PacienteController{
         Paciente pacient = service.saveOrUpdatePaciente(newpac);
         return new ResponseEntity<Paciente>(pacient, HttpStatus.CREATED);
     }
-  //@PutMapping("/{id}")
-  //public Paciente updatePaciente(@PathVariable Long id, @RequestBody MPaciente paciente)
-  //{
-  //    Paciente newpac = service.convert(paciente);
-  //    newpac.setId(id);
-  //    return service.saveOrUpdatePaciente(newpac);
-  //}
-  
-  // delete 1 medico, sobre su id
-  @DeleteMapping("/{id}")
-  public ResponseEntity<String> deletePaciente(@PathVariable Long id)
-  {
-      try{
-          service.deletePaciente(id);
-          return new ResponseEntity<>(
-          "Se borro con exito",
-          HttpStatus.OK);
-      }catch(Exception e) {
-          return new ResponseEntity<>(
-          "Ocurrio un error",
-          HttpStatus.BAD_REQUEST);
-      }
-  }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletePaciente(@PathVariable Long id)
+    {
+        try{
+            service.deletePaciente(id);
+            return new ResponseEntity<>(
+            "Se borro con exito",
+            HttpStatus.OK);
+        }catch(Exception e) {
+            return new ResponseEntity<>(
+            "Ocurrio un error",
+            HttpStatus.BAD_REQUEST);
+        }
+    }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<String> handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
@@ -126,6 +119,5 @@ public class PacienteController{
         return new ResponseEntity<>("Estado no válido", HttpStatus.BAD_REQUEST);
         
     }
-
 
 }
