@@ -35,10 +35,10 @@ public class PacienteService{
   {
     return convertidor.convertirLista(repositorio.findByEstado(estado));
   }
-  public List<MPaciente> listByPabellon(Long idPabellon)
-  {
-    return convertidor.convertirLista(repositorio.findByPabellon(idPabellon));
-  }
+  //public List<MPaciente> listByPabellon(Long idPabellon)
+  //{
+    //return convertidor.convertirLista(repositorio.findByPabellon(idPabellon));
+  //}
   //create & update
   public Paciente saveOrUpdatePaciente(Paciente paciente)
   {

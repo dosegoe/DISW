@@ -20,8 +20,8 @@ public interface PacienteRepository extends JpaRepository<Paciente, Serializable
       public abstract List<Paciente> findAll();
 
       public abstract List<Paciente> findByEstado(Long estado);
-      
-      // public abstract List<Paciente> findByPabellon(Long idPabellon);
+
+      //public abstract List<Paciente> findByPabellon(Long idPabellon);
 
       public abstract void deleteById(Long id);
     }
